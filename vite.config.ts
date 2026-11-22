@@ -4,6 +4,6 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/portfolio/', // GitHub Pages project site path
+  base: '/', // GitHub Pages project site path
   plugins: [react(), tailwindcss()],
 })
