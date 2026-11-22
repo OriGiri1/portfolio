@@ -33,3 +33,6 @@ dist-ssr
 
 # Local Claude Code config
 .claude/
+
+# AI assistant notes
+CLAUDE.md

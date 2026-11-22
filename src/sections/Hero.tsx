@@ -95,7 +95,7 @@ export function Hero({ ready }: { ready: boolean }) {
           </h1>
           <motion.img
             {...reveal(0.3)}
-            src="/avatar-img.jpg"
+            src={`${import.meta.env.BASE_URL}avatar-img.jpg`}
             alt={`Portrait of ${profile.name.full}`}
             width={960}
             height={1280}
