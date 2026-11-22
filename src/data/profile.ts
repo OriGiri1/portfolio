@@ -1,7 +1,7 @@
 // Single source of truth for every piece of copy, link and stat on the page.
 
 export const profile = {
-  name: { first: 'NGUYỄN', last: 'MINH TÂN', full: 'Nguyễn Minh Tân' },
+  name: { first: 'MINH TAN', last: 'NGUYEN', full: 'Nguyen Minh Tan' },
   location: 'Da Nang, Vietnam',
   coords: '16.07°N 108.22°E',
   school: 'University of Science and Technology — The University of Danang',
