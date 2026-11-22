@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens. Light is the default; `html.dark` swaps every value. */
+:root {
+  --bg: #fafafb;
+  --surface: #ffffff;
+  --track: #f0f1f4;
+  --line: rgba(15, 23, 42, 0.08);
+  --line-strong: rgba(15, 23, 42, 0.16);
+  --fg: #0f172a;
+  --muted: #475569;
+  --accent: #16a34a;
+  /* Text on accent fills: dark ink keeps AA contrast on emerald in both themes. */
+  --on-accent: #0f172a;
+  --spot: rgba(15, 23, 42, 0.035);
+  color-scheme: light;
+}
+
+:root.dark {
+  --bg: #09090b;
+  --surface: #121216;
+  --track: #1c1c22;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --fg: #f4f4f6;
+  --muted: #94a3b8;
+  --accent: #22c55e;
+  --on-accent: #09090b;
+  --spot: rgba(244, 244, 246, 0.075);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-ink: var(--bg);
+  --color-surface: var(--surface);
+  --color-track: var(--track);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-acid: var(--accent);
+  --color-on-acid: var(--on-accent);
+}
+
+@theme {
+  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  html {
+    background: var(--color-ink);
+    color: var(--color-fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100svh;
+    background: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background: var(--color-acid);
+    color: var(--color-on-acid);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-acid);
+    outline-offset: 4px;
+  }
+
+  /* Hide the native cursor only where the custom cursor renders. */
+  @media (hover: hover) and (pointer: fine) {
+    html.has-custom-cursor,
+    html.has-custom-cursor * {
+      cursor: none !important;
+    }
+  }
+}
+
+/* Lenis recommended base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+@utility font-telemetry {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-fg);
+}
+
+@utility hairline-grid {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 88px 88px;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
